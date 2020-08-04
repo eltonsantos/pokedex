@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-
-import Pokemon from '../Pokemon';
-
 import PokeList from './PokeList';
-
 import DetailView from './DetailView';
-
-import './styles/App.css'
-
+import Pokemon from '../Pokemon';
+import './styles/App.css';
 
 class App extends Component {
   constructor() {
@@ -24,20 +19,23 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         const pokemon = new Pokemon(data);
-        this.setState({pokemon});
+
+        this.setState({ pokemon });
       })
       .catch(err => console.log(err));
   }
 
   render() {
     return (
-      <div className="App">
-        <PokeList handleOnClick={this.handleOnClick} />
-        <DetailView pokemon = {this.state.pokemon} />
-      </div>
+      <>
+        <h1 className="Titulo">Pokédex</h1>
+        <div className="App">
+          <PokeList handleOnClick={this.handleOnClick} />
+          <DetailView pokemon={this.state.pokemon} />
+        </div>
+      </>
     );
   }
-
 }
 
 export default App;
